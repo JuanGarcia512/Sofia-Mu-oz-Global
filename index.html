@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grade 10 · Term 1 | Decision Lab</title>
+<style>
+:root{--navy:#39243b;--blue:#9b4d78;--teal:#bd6f91;--ink:#332638;--muted:#796879;--line:#ead8e3;--bg:#fbf4f8;--card:#fff;--gold:#e8b5c8;--red:#b54768;--green:#397b68}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial}
+header{background:linear-gradient(120deg,#39243b 0%,#754466 52%,#b86d91 100%);color:white;padding:28px max(22px,calc((100% - 1220px)/2)) 25px}
+.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:11px;font-weight:800;color:#f2c7da}h1{margin:5px 0;font-size:clamp(25px,4vw,36px);line-height:1.15}header p{margin:8px 0 0;color:#f8e8ef;max-width:760px}
+main{max-width:1220px;margin:22px auto;padding:0 18px 60px}.toolbar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:17px}
+button,select,input{font:inherit}button{border:1px solid var(--line);background:white;color:var(--ink);padding:8px 12px;border-radius:9px;cursor:pointer;font-weight:650}button:hover{border-color:var(--blue);color:var(--blue);background:#fff8fb}button.primary{background:var(--blue);color:#fff;border-color:var(--blue)}button.danger{color:var(--red)}button.small{padding:5px 8px;font-size:12px}
+select,input{border:1px solid #cbd5e1;border-radius:8px;padding:8px 9px;background:white;color:var(--ink);min-width:0}input[type=number]{width:100%;min-width:75px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:19px;margin:14px 0;box-shadow:0 3px 12px #18334b08}.card h2{font-size:19px;margin:0 0 4px}.sub{color:var(--muted);font-size:13px;margin:0 0 15px}.section-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.pills{display:flex;gap:7px;flex-wrap:wrap}.pill{font-size:12px;border-radius:99px;background:#f8e8f0;color:#854666;padding:5px 9px;font-weight:700}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}table{width:100%;border-collapse:collapse;min-width:690px}th,td{padding:9px 10px;text-align:center;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}th{background:#f8edf2;color:#65475b;font-size:12px}th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:#fdf7fa;z-index:1}td input{width:100%;text-align:center}tr:last-child td{border-bottom:0}.state-head{min-width:130px}.prob-row td{background:#fff7fb}.prob-row td:first-child{font-weight:700}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}.metric{background:linear-gradient(145deg,#fffafd,#fbedf4);border:1px solid var(--line);padding:12px;border-radius:11px}.metric b{display:block;font-size:21px;color:var(--navy)}.metric span{font-size:12px;color:var(--muted)}
+.results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.result{border:1px solid var(--line);border-radius:12px;padding:14px;background:linear-gradient(145deg,#fff,#fff9fc)}.result h3{font-size:14px;margin:0 0 8px}.winner{font-weight:800;color:var(--green)}.result p{margin:4px 0;color:var(--muted);font-size:13px}.tag{display:inline-block;background:#e9f4ef;color:#286b56;border-radius:6px;padding:3px 7px;font-size:12px;font-weight:800;margin:2px}
+.notice{background:#fff5f8;border:1px solid #f0d4e0;color:#86506a;padding:10px 12px;border-radius:9px;font-size:13px;margin:10px 0}.muted{color:var(--muted)}.stage-list{display:grid;gap:10px}.stage{display:grid;grid-template-columns:42px minmax(160px,1fr) minmax(140px,220px) auto;gap:10px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:10px}.stage-num{background:#f5e5ee;border-radius:8px;text-align:center;padding:7px;font-weight:800}.stage label{font-size:12px;color:var(--muted);display:block;margin-bottom:3px}.stage select{width:100%}.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin-top:14px}.flow-node{min-width:145px;max-width:220px;flex:1;border:1px solid #ead3df;background:linear-gradient(145deg,#fffafd,#fbedf4);border-radius:11px;padding:11px}.flow-node strong{display:block;font-size:13px}.flow-node small{color:var(--muted)}.arrow{align-self:center;color:#bd7d9b;font-size:20px}.survive{color:var(--green)}.eliminated{color:var(--red);text-decoration:line-through}.empty{color:var(--muted);font-style:italic}
+footer{max-width:1220px;margin:0 auto;padding:0 18px 35px;color:var(--muted);font-size:12px}.footer-link{color:#9b4d78;font-weight:700}
+@media(max-width:760px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.results{grid-template-columns:1fr}.stage{grid-template-columns:35px 1fr}.stage .remove-stage{grid-column:2}.card{padding:14px}}
+@media print{body{background:white}.toolbar,button,.remove-stage{display:none!important}.card{box-shadow:none;break-inside:avoid}header{background:#14243a!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head>
+<body>
+<header><div class="eyebrow">Grade 10 · Term 1 · C10 Practice</div><h1>Decision Lab</h1><p>Explore decisions under uncertainty. Change alternatives, states, payoffs and probabilities, then compare decision criteria and watch each filtering stage update automatically.</p></header>
+<main>
+<div class="toolbar">
+ <label class="muted" for="example">Load a practice example</label>
+ <select id="example"><option value="farm">Agricultural investment</option><option value="tech">Technology launch</option><option value="custom">Blank / custom model</option></select>
+ <button id="reset" class="primary">Load example</button><button id="transpose">Transpose table</button><button id="print">Print dashboard</button>
+ <span style="flex:1"></span><span class="pill" id="status">Live calculations</span>
+</div>
+<section class="card">
+ <div class="section-head"><div><h2>1. Decision model · Payoff table</h2><p class="sub">Enter payoffs in consistent units. Positive and negative values are allowed.</p></div><div class="pills"><span class="pill" id="altCount">3 alternatives</span><span class="pill" id="stateCount">3 states</span></div></div>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px">
+ <label class="muted">Payoff unit <input id="unit" value="thousand dollars" style="width:175px"></label>
+ <button id="addAlt">＋ Add alternative</button><button id="addState">＋ Add state</button>
+ </div>
+ <div class="table-wrap"><table id="payoff"></table></div>
+ <div id="validation" aria-live="polite"></div>
+ <div class="metrics" id="summary"></div>
+</section>
+<section class="card">
+ <div class="section-head"><div><h2>2. Decision criteria</h2><p class="sub">Each criterion evaluates the complete original set of alternatives. Ties are all reported.</p></div></div>
+ <div class="results" id="criteria"></div>
+ <div class="notice">Assumptions: Maximax selects the greatest row maximum; Maximin selects the greatest row minimum; Minimax Regret minimizes the largest state regret; EMV/Bayes maximizes the probability-weighted payoff. Probabilities must total 1 (100%).</div>
+</section>
+<section class="card">
+ <div class="section-head"><div><h2>3. Staged filtering</h2><p class="sub">Rules are applied in order to the preceding survivors. A tie at the best value survives; eliminated alternatives do not return.</p></div><button id="addStage" class="primary">＋ Add filtering stage</button></div>
+ <div id="stages" class="stage-list"></div>
+ <div id="filterSummary" class="sub" style="margin-top:12px"></div>
+</section>
+<section class="card">
+ <h2>4. Filtering flow diagram</h2><p class="sub">Solid progression shows the alternatives that survive each stage. The final node is the recommended outcome of the sequence.</p>
+ <div id="flow" class="flow"></div>
+ <div id="flowLegend" class="sub" style="margin-top:12px"></div>
+</section>
+<section class="card">
+ <h2>5. How to use this dashboard</h2>
+ <p class="sub" style="margin-bottom:0">1. Select an example or build your own model. 2. Rename alternatives and states and edit every payoff. 3. Adjust state probabilities so they sum to 100%. 4. Compare all four criteria. 5. Add, reorder or change filtering stages and inspect the flow diagram. All values are recalculated from the current table.</p>
+</section>
+</main>
+<footer>Grade 10 · Term 1 · C10 Practice — Decision-making under uncertainty. <a class="footer-link" href="https://chatgpt.com/share/6aec7ac9-4284-83e8-a577-9206fbded10b" target="_blank" rel="noopener">AI development conversation</a> <span class="muted">(Replace this link with your shareable conversation URL before submission.)</span></footer>
+<script>
+const examples={
+farm:{unit:"thousand dollars",states:[{name:"High rainfall",p:.25},{name:"Normal rainfall",p:.5},{name:"Drought",p:.25}],alts:[{name:"Premium crop",v:[150,70,-80]},{name:"Diversified crops",v:[100,65,20]},{name:"Basic crop",v:[65,50,35]},{name:"Greenhouse",v:[90,55,10]}]},
+tech:{unit:"thousand dollars",states:[{name:"High demand",p:.3},{name:"Steady demand",p:.45},{name:"Low demand",p:.25}],alts:[{name:"Large launch",v:[240,60,-150]},{name:"Pilot launch",v:[110,85,35]},{name:"License technology",v:[80,70,55]},{name:"Delay launch",v:[30,30,30]}]},
+custom:{unit:"units",states:[{name:"State 1",p:.5},{name:"State 2",p:.5}],alts:[{name:"Alternative A",v:[80,20]},{name:"Alternative B",v:[50,50]}]}
+};
+let model,stages=[{criterion:"emv",name:"Highest expected value"},{criterion:"min",name:"Protect the minimum payoff"}],transposed=false;
+const $=id=>document.getElementById(id), fmt=n=>Number(n).toFixed(2), esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function load(key){const e=examples[key]||examples.custom;model={unit:e.unit,states:e.states.map(x=>({...x})),alts:e.alts.map(x=>({name:x.name,v:[...x.v]}))};stages=[{criterion:"emv",name:"Highest expected value"},{criterion:"min",name:"Protect the minimum payoff"}];transposed=false;render()}
+function stats(){let probs=model.states.map(s=>s.p),validP=probs.every(Number.isFinite)&&probs.every(p=>p>=0)&&Math.abs(probs.reduce((a,b)=>a+b,0)-1)<1e-8,validPayoffs=model.alts.every(a=>a.v.length===model.states.length&&a.v.every(Number.isFinite));
+let bestByState=model.states.map((s,j)=>Math.max(...model.alts.map(a=>a.v[j]))),rows=model.alts.map(a=>{let max=Math.max(...a.v),min=Math.min(...a.v),emv=a.v.reduce((sum,v,j)=>sum+v*probs[j],0),regrets=a.v.map((v,j)=>bestByState[j]-v),maxRegret=Math.max(...regrets);return {name:a.name,max,min,emv,maxRegret,regrets}});
+return {rows,validP,validPayoffs,bestByState};}
+function renderTable(){let html='<thead><tr><th>Alternative</th>'+model.states.map((s,j)=>`<th class="state-head"><input aria-label="State ${j+1} name" data-state-name="${j}" value="${esc(s.name)}"><button class="small danger" data-del-state="${j}" title="Remove state">×</button></th>`).join('')+'<th>Action</th></tr></thead><tbody>';
+if(!transposed){model.alts.forEach((a,i)=>{html+=`<tr><td><input aria-label="Alternative ${i+1} name" data-alt-name="${i}" value="${esc(a.name)}"></td>`+a.v.map((v,j)=>`<td><input type="number" step="any" data-payoff="${i},${j}" value="${Number.isFinite(v)?v:''}" aria-label="Payoff ${a.name} in ${model.states[j].name}"></td>`).join('')+`<td><button class="small danger" data-del-alt="${i}">Remove</button></td></tr>`})}
+else{html+=model.states.map((s,j)=>`<tr><td><strong>${esc(s.name)}</strong></td>`+model.alts.map((a,i)=>`<td><input type="number" step="any" data-payoff="${i},${j}" value="${Number.isFinite(a.v[j])?a.v[j]:''}" aria-label="${a.name} payoff"></td>`).join('')+'<td class="muted">State</td></tr>').join('')}
+html+=`<tr class="prob-row"><td>State probability</td>${model.states.map((s,j)=>`<td><input type="number" min="0" max="1" step=".01" data-prob="${j}" value="${s.p}" aria-label="Probability for ${esc(s.name)}"><small class="muted">${fmt(s.p*100)}%</small></td>`).join('')}<td><strong id="probTotal"></strong></td></tr></tbody>`;
+$('payoff').innerHTML=html;$('altCount').textContent=model.alts.length+' alternatives';$('stateCount').textContent=model.states.length+' states';
+}
+function winner(values,mode){let best=mode==='min'?Math.min(...values):Math.max(...values);return {best,idx:values.map((v,i)=>Math.abs(v-best)<1e-9?i:-1).filter(i=>i>=0)}}
+function renderCriteria(s){let defs=[['max','Maximax','Choose the alternative with the highest possible payoff.','max'],['min','Maximin','Choose the best of the worst possible payoffs.','min'],['maxRegret','Minimax Regret','Minimize the largest regret across states.','min'],['emv','EMV / Bayes','Maximize probability-weighted expected payoff.','max']];
+$('criteria').innerHTML=defs.map(([key,title,desc,mode])=>{let w=winner(s.rows.map(r=>r[key]),mode);return `<div class="result"><h3>${title}</h3><p>${desc}</p><div class="winner">${w.idx.map(i=>`<span class="tag">${esc(s.rows[i].name)}</span>`).join(' ')}</div><p>Criterion value: <strong>${fmt(w.best)} ${esc(model.unit)}</strong></p></div>`}).join('')}
+const criterionOptions=[['emv','EMV / Bayes (maximize)'],['max','Maximax (maximize)'],['min','Maximin (maximize)'],['maxRegret','Minimax Regret (minimize)']];
+function renderStages(s){$('stages').innerHTML=stages.map((st,i)=>`<div class="stage"><div class="stage-num">${i+1}</div><div><label>Stage label</label><input data-stage-name="${i}" value="${esc(st.name)}" style="width:100%"></div><div><label>Keep best by criterion</label><select data-stage-criterion="${i}">${criterionOptions.map(([v,l])=>`<option value="${v}" ${st.criterion===v?'selected':''}>${l}</option>`).join('')}</select></div><button class="small danger remove-stage" data-del-stage="${i}">Remove stage</button></div>`).join('')||'<p class="empty">No stages yet. Add a stage to begin filtering.</p>';
+let alive=model.alts.map((a,i)=>i),steps=[];stages.forEach((st,i)=>{let vals=alive.map(k=>s.rows[k][st.criterion]),mode=st.criterion==='maxRegret'?'min':'max',w=winner(vals,mode);let keep=w.idx.map(j=>alive[j]),drop=alive.filter(k=>!keep.includes(k));steps.push({name:st.name,criterion:st.criterion,keep,drop,best:w.best});alive=keep});
+$('filterSummary').textContent=steps.length?`Final survivors: ${alive.map(i=>model.alts[i].name).join(', ')||'none'}. Each stage uses the previous stage’s survivors.`:'Add one or more stages to see the sequential decision process.';
+renderFlow(steps,alive);
+}
+function renderFlow(steps,alive){let nodes=[{name:'Start · all alternatives',keep:model.alts.map((a,i)=>i),drop:[]} ,...steps.map(x=>({name:x.name,keep:x.keep,drop:x.drop,criterion:x.criterion,best:x.best}))];if(!steps.length)nodes.push({name:'Add a stage to filter',keep:model.alts.map((a,i)=>i),drop:[]});
+$('flow').innerHTML=nodes.map((n,i)=>`${i?'<div class="arrow">→</div>':''}<div class="flow-node"><strong>${esc(n.name)}</strong><small>${n.criterion?`Best ${n.criterion} = ${fmt(n.best)}`:'Current set'}</small><div style="margin-top:7px">${n.keep.map(k=>`<div class="survive">✓ ${esc(model.alts[k]?.name||'')}</div>`).join('')||'<span class="empty">No survivors</span>'}${n.drop.map(k=>`<div class="eliminated">− ${esc(model.alts[k]?.name||'')}</div>`).join('')}</div></div>`).join('');
+$('flowLegend').textContent='✓ Retained · − Eliminated at this stage. Final recommendation: '+(alive.length?alive.map(i=>model.alts[i].name).join(', '):'No alternatives remain')+'.'}
+function render(){renderTable();let s=stats();$('summary').innerHTML=[['Alternatives',model.alts.length],['States of nature',model.states.length],['Probability total',fmt(model.states.reduce((a,x)=>a+x.p,0)*100)+'%'],['Payoff entries',model.alts.length*model.states.length]].map(x=>`<div class="metric"><b>${x[1]}</b><span>${x[0]}</span></div>`).join('');
+$('validation').innerHTML=(s.validPayoffs?'':'<div class="notice">Enter a valid numeric payoff in every cell before comparing criteria.</div>')+(s.validP?'<p class="sub" style="color:var(--green);margin:9px 0 0">✓ Probabilities are valid and total 100%.</p>':'<div class="notice">Adjust probabilities so each is non-negative and their total equals 1 (100%). EMV and EMV-based filtering are paused until this is corrected.</div>');
+$('probTotal').textContent=fmt(model.states.reduce((a,x)=>a+x.p,0)*100)+'%';
+if(s.validPayoffs){if(s.validP)renderCriteria(s);else $('criteria').innerHTML='<p class="empty">EMV/Bayes results are unavailable until probabilities total 100%. Other criteria remain valid.</p>';renderStages(s)}else{$('criteria').innerHTML='<p class="empty">Complete all payoff cells with valid numbers to calculate the decision criteria.</p>';$('stages').innerHTML='<p class="empty">Filtering will appear when all payoff cells are valid.</p>';$('flow').innerHTML='<div class="flow-node"><strong>Waiting for valid payoff data</strong></div>'}
+}
+function updateFromEvent(e){let t=e.target;if(t.dataset.altName!==undefined)model.alts[+t.dataset.altName].name=t.value;
+if(t.dataset.stateName!==undefined)model.states[+t.dataset.stateName].name=t.value;
+if(t.dataset.payoff){let [i,j]=t.dataset.payoff.split(',').map(Number);model.alts[i].v[j]=t.value===''?NaN:Number(t.value)}
+if(t.dataset.prob!==undefined)model.states[+t.dataset.prob].p=t.value===''?NaN:Number(t.value);
+if(t.dataset.stageName!==undefined)stages[+t.dataset.stageName].name=t.value;
+if(t.dataset.stageCriterion!==undefined)stages[+t.dataset.stageCriterion].criterion=t.value;
+render();}
+$('payoff').addEventListener('change',updateFromEvent);
+$('stages').addEventListener('change',updateFromEvent);
+$('payoff').addEventListener('click',e=>{let t=e.target;if(t.dataset.delAlt!==undefined&&model.alts.length>1){model.alts.splice(+t.dataset.delAlt,1);render()}if(t.dataset.delState!==undefined&&model.states.length>1){let j=+t.dataset.delState;model.states.splice(j,1);model.alts.forEach(a=>a.v.splice(j,1));let total=model.states.reduce((a,s)=>a+s.p,0);if(total>0)model.states.forEach(s=>s.p/=total);render()}});
+$('stages').addEventListener('click',e=>{if(e.target.dataset.delStage!==undefined){stages.splice(+e.target.dataset.delStage,1);render()}});
+$('addAlt').onclick=()=>{model.alts.push({name:'Alternative '+String.fromCharCode(65+model.alts.length),v:model.states.map(()=>0)});render()};
+$('addState').onclick=()=>{model.states.push({name:'State '+(model.states.length+1),p:1/(model.states.length+1)});let n=model.states.length;model.states.forEach(s=>s.p=1/n);model.alts.forEach(a=>a.v.push(0));render()};
+$('addStage').onclick=()=>{stages.push({criterion:'emv',name:'New filtering stage'});render()};
+$('transpose').onclick=()=>{transposed=!transposed;renderTable();$('transpose').textContent=transposed?'Show alternatives as rows':'Transpose table'};
+$('print').onclick=()=>window.print();$('reset').onclick=()=>load($('example').value);load('farm');
+</script></body></html>
